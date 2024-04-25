@@ -62,6 +62,13 @@ class _ProductPageState extends State<ProductPage> {
                             builder: (context) => NewClass(
                               description: product[index].description,
                               title: product[index].title,
+                              brand: product[index].brand,
+                              category: product[index].category,
+                              discountPercentage:
+                                  product[index].discountPercentage.toString(),
+                              price: product[index].price.toString(),
+                              rating: product[index].rating.toString(),
+                              stock: product[index].stock.toString(),
                               ImagePath: "https://picsum.photos/id/1/200/300",
                             ),
                           ),
