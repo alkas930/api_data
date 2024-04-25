@@ -1,48 +1,78 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:project1/api_services.dart';
+import 'package:http/http.dart' as http;
+import 'package:project1/new_class.dart';
 import 'package:project1/posts_model.dart';
 
-class pageapi extends StatefulWidget {
-  const pageapi({Key? key}) : super(key: key);
+class ProductPage extends StatefulWidget {
+  const ProductPage({Key? key}) : super(key: key);
+
   @override
-  State<pageapi> createState() => _pageapiState();
+  _ProductPageState createState() => _ProductPageState();
 }
 
-class _pageapiState extends State<pageapi> {
+class _ProductPageState extends State<ProductPage> {
+  late List<Product> product = [];
+
+  Future<void> fetchProduct() async {
+    try {
+      final String url = "https://dummyjson.com/product";
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = jsonDecode(response.body);
+        setState(() {
+          product = (data['products'] as List<dynamic>)
+              .map((item) => Product.fromJson(item))
+              .toList();
+        });
+      } else {
+        throw Exception('Failed to load product');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    fetchProduct();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.cyanAccent,
-        title: const Center(child: Text("fetch data from api")),
-      ),
-      body: FutureBuilder(
-        future: getposts(),
-        builder: (context, AsyncSnapshot<List<Product>> snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            List<Product> products = snapshot.data!;
-            return ListView.builder(
-              itemCount: products.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ListTile(
-                      leading: Image.network(
-                        products[index].thumbnail,
-                        width: 100,
-                      ),
-                      title: Text(products[index].title),
-                    ),
-                  ),
-                );
-              },
+        appBar: AppBar(
+          title: Text('Loading...'),
+        ),
+        body: ListView.builder(
+          itemCount: product.length,
+          itemBuilder: (context, index) {
+            return Container(
+              child: Column(
+                children: [
+                  Text(product[index].title),
+                  InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NewClass(
+                              description: product[index].description,
+                              title: product[index].title,
+                              ImagePath: "https://picsum.photos/id/1/200/300",
+                            ),
+                          ),
+                        );
+                      },
+                      child:
+                          Image.network("https://picsum.photos/id/1/200/300"))
+                ],
+              ),
             );
-          }
-        },
-      ),
-    );
+          },
+        ));
   }
 }
