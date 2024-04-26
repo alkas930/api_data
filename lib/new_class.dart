@@ -39,14 +39,36 @@ class NewClass extends StatelessWidget {
             Text(title),
             Image.network(
               ImagePath,
-              scale: 2,
             ),
             Text(description),
             Text(brand),
             Text(category),
             Text(discountPercentage),
-            Text(rating),
-            Text(price),
+            Container(
+              width: 70,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    rating,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Icon(
+                    Icons.star,
+                    color: Colors.white,
+                  )
+                ],
+              ),
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(192, 8, 245, 48),
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+            ),
+            Row(
+              children: [
+                Text("with special offer "),
+                Text(price),
+              ],
+            ),
             Text(stock),
           ],
         ),

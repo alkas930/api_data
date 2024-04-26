@@ -13,12 +13,12 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  late List<Product> product = [];
+  List product = [];
 
   Future<void> fetchProduct() async {
     try {
-      final String url = "https://dummyjson.com/product";
-      final response = await http.get(Uri.parse(url));
+      final response =
+          await http.get(Uri.parse("https://dummyjson.com/product"));
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);
@@ -74,8 +74,11 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                         );
                       },
-                      child:
-                          Image.network("https://picsum.photos/id/1/200/300"))
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:
+                            Image.network("https://picsum.photos/id/1/200/300"),
+                      ))
                 ],
               ),
             );
