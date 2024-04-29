@@ -1,19 +1,47 @@
-// import 'package:http/http.dart' as http;
-// import 'package:project1/posts_model.dart';
+import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:flutter/material.dart';
 
-// getposts() async {
-//   final url = Uri.parse('https://dummyjson.com/products');
-//   final res = await http.get(url);
+class myapp extends StatefulWidget {
+  const myapp({super.key});
 
-//   print("----------------------${res.b}");
-//   try {
-//     if (res.statusCode == 200) {
-//       var data = postModelFromJson(res.body);
-//       return data.products;
-//     } else {
-//       print("error");
-//     }
-//   } catch (e) {
-//     print(e.toString());
-//   }
-// }
+  @override
+  State<myapp> createState() => _myappState();
+}
+
+class _myappState extends State<myapp> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          DefaultTabController(
+              length: 3,
+              child: Column(
+                children: [
+                  ButtonsTabBar(
+                    backgroundColor: Colors.brown,
+                    unselectedBackgroundColor: Colors.grey,
+                    unselectedLabelStyle: TextStyle(color: Colors.lime),
+                    labelStyle: TextStyle(color: Colors.pink),
+                    tabs: [
+                      Tab(
+                        icon: Icon(Icons.laptop),
+                        text: "laptop",
+                      ),
+                      Tab(
+                        icon: Icon(Icons.laptop),
+                        text: "laptop",
+                      ),
+                      Tab(
+                        icon: Icon(Icons.laptop),
+                        text: "laptop",
+                      )
+                    ],
+                  )
+                ],
+              ))
+        ],
+      ),
+    );
+  }
+}

@@ -85,113 +85,91 @@ class _ProductPageState extends State<ProductPage> {
           ],
         ),
       ),
-      body: Expanded(
-        child: GridView.builder(
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          itemCount: product.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color.fromARGB(255, 245, 248, 249),
-                    border: Border.all(color: Colors.grey)),
-                height: size.height,
-                width: size.width,
-                child: Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => NewClass(
-                              description: product[index].description,
-                              title: product[index].title,
-                              brand: product[index].brand,
-                              category: product[index].category,
-                              discountPercentage:
-                                  product[index].discountPercentage.toString(),
-                              price: product[index].price.toString(),
-                              rating: product[index].rating.toString(),
-                              stock: product[index].stock.toString(),
-                              ImagePath: "https://picsum.photos/id/1/200/300",
-                            ),
-                          ),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            "https://picsum.photos/id/1/200/300",
-                            fit: BoxFit.contain,
-                            scale: 2.3,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Text(
-                            product[index].title,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Text(
-                            "Buds T300 with .....",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 18, 18, 18),
-                                fontSize: 13),
-                          ),
-                        ),
-                      ],
-                    ),
-                    AnimatedRatingStars(
-                        onChanged: (v) {},
-                        customFilledIcon: Icons.star,
-                        customHalfFilledIcon: Icons.star_half,
-                        customEmptyIcon: Icons.star_border),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Row(
-                        children: [
-                          Text(
-                            "Price  ",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 13, 225, 24)),
-                          ),
-                          Text(
-                            product[index].price.toString(),
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          },
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.7,
         ),
+        itemCount: product.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Container(
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Color.fromARGB(255, 245, 248, 249),
+                border: Border.all(color: Colors.grey)),
+            height: size.height,
+            width: size.width,
+            child: Column(
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NewClass(
+                          description: product[index].description,
+                          title: product[index].title,
+                          brand: product[index].brand,
+                          category: product[index].category,
+                          discountPercentage:
+                              product[index].discountPercentage.toString(),
+                          price: product[index].price.toString(),
+                          rating: product[index].rating.toString(),
+                          stock: product[index].stock.toString(),
+                          ImagePath: "https://picsum.photos/id/1/200/300",
+                        ),
+                      ),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        "https://picsum.photos/id/1/200/300",
+                        fit: BoxFit.contain,
+                        scale: 2.3,
+                      ),
+                    ),
+                  ),
+                ),
+                Text(
+                  product[index].title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                Text(
+                  "Buds T300 with .....",
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 18, 18, 18), fontSize: 13),
+                ),
+                AnimatedRatingStars(
+                    onChanged: (v) {},
+                    customFilledIcon: Icons.star,
+                    customHalfFilledIcon: Icons.star_half,
+                    customEmptyIcon: Icons.star_border),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Price  ",
+                      style: TextStyle(color: Color.fromARGB(255, 13, 225, 24)),
+                    ),
+                    Text(
+                      product[index].price.toString(),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          );
+        },
       ),
     );
   }

@@ -32,6 +32,7 @@ class NewClass extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 190, 246, 250),
         actions: [
           Row(
             children: [
