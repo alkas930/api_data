@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project1/api_services.dart';
-import 'package:project1/new_class.dart';
 import 'package:project1/page.dart';
+import 'package:project1/tab.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ProductPage(),
+      home: const tab(),
     );
   }
 }

@@ -8,20 +8,20 @@ import 'package:project1/icons.dart';
 import 'package:project1/new_class.dart';
 import 'package:project1/posts_model.dart';
 
-class ProductPage extends StatefulWidget {
-  const ProductPage({Key? key}) : super(key: key);
+class ProductPage2 extends StatefulWidget {
+  const ProductPage2({Key? key}) : super(key: key);
 
   @override
   _ProductPageState createState() => _ProductPageState();
 }
 
-class _ProductPageState extends State<ProductPage> {
+class _ProductPageState extends State<ProductPage2> {
   List product = [];
 
   fetchProduct() async {
     try {
-      final response =
-          await http.get(Uri.parse("https://dummyjson.com/product"));
+      final response = await http.get(Uri.parse(
+          "https://unsplash.com/photos/white-and-blue-iphone-cases-lSDI7Z-DLzM"));
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);
@@ -90,7 +90,7 @@ class _ProductPageState extends State<ProductPage> {
         child: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 0.5,
+            childAspectRatio: 0.7,
           ),
           itemCount: product.length,
           shrinkWrap: true,
@@ -105,35 +105,14 @@ class _ProductPageState extends State<ProductPage> {
               width: size.width,
               child: Column(
                 children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => NewClass(
-                            description: product[index].description,
-                            title: product[index].title,
-                            brand: product[index].brand,
-                            category: product[index].category,
-                            discountPercentage:
-                                product[index].discountPercentage.toString(),
-                            price: product[index].price.toString(),
-                            rating: product[index].rating.toString(),
-                            stock: product[index].stock.toString(),
-                            ImagePath: "https://picsum.photos/id/1/200/300",
-                          ),
-                        ),
-                      );
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          "https://picsum.photos/id/1/200/300",
-                          fit: BoxFit.contain,
-                          scale: 2.3,
-                        ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        "https://unsplash.com/photos/white-and-blue-iphone-cases-lSDI7Z-DLzM",
+                        fit: BoxFit.contain,
+                        scale: 2.3,
                       ),
                     ),
                   ),
@@ -150,7 +129,6 @@ class _ProductPageState extends State<ProductPage> {
                         color: Color.fromARGB(255, 18, 18, 18), fontSize: 13),
                   ),
                   AnimatedRatingStars(
-                      starSize: 20,
                       onChanged: (v) {},
                       customFilledIcon: Icons.star,
                       customHalfFilledIcon: Icons.star_half,
