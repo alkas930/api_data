@@ -35,7 +35,6 @@ class _tabState extends State<tab> {
           ],
           views: [
             ProductPage(),
-            ProductPage2(),
           ],
           onChange: (index) => print(index),
         ),

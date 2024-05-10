@@ -98,6 +98,10 @@ class _ProductPageState extends State<ProductPage> {
             return Container(
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                    Color.fromARGB(255, 236, 172, 167),
+                    const Color.fromARGB(255, 158, 206, 245)
+                  ], begin: Alignment.centerLeft, end: Alignment.topLeft),
                   borderRadius: BorderRadius.circular(10),
                   color: Color.fromARGB(255, 245, 248, 249),
                   border: Border.all(color: Colors.grey)),
