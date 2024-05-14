@@ -20,8 +20,10 @@ class _ProductPageState extends State<ProductPage2> {
 
   fetchProduct() async {
     try {
-      final response = await http.get(Uri.parse(
-          "https://unsplash.com/photos/white-and-blue-iphone-cases-lSDI7Z-DLzM"));
+      final response = await http.get(
+          Uri.parse(
+              "https://unsplash.com/photos/white-and-blue-iphone-cases-lSDI7Z-DLzM"),
+          s);
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);

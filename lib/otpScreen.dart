@@ -64,21 +64,24 @@ class _otpScreenState extends State<otpScreen> {
           ElevatedButton(
               onPressed: () {
                 try {
-                  PhoneAuthCredential cred = PhoneAuthProvider.credential(
-                      verificationId: widget.verificationId,
-                      smsCode: otpcontroller.text.toString());
+                  // PhoneAuthCredential cred = PhoneAuthProvider.credential(
+                  //     verificationId: widget.verificationId,
+                  //     smsCode: otpcontroller.text.toString());
 
-                  FirebaseAuth.instance
-                      .signInWithCredential(cred)
-                      .then((value) => {
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ProductPage()),
-                              (route) => false,
-                            )
-                            // Navigator.pushNamed(context, loginRoute)
-                          });
+                  // FirebaseAuth.instance
+                  //     .signInWithCredential(cred)
+                  //     .then((value) => {
+                  //           Navigator.pushAndRemoveUntil(
+                  //             context,
+                  //             MaterialPageRoute(
+                  //                 builder: (context) => ProductPage()),
+                  //             (route) => false,
+                  //           )
+                  //           // Navigator.pushNamed(context, loginRoute)
+                  //         });
+                  PhoneAuthCredential cred = PhoneAuthProvider.credential(
+                      verificationId: verificationId,
+                      smsCode: otpcontroller.text);
                 } catch (e) {
                   print('----------------eror from otp==========$e');
                 }
