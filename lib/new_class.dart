@@ -3,13 +3,14 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:project1/cart.dart';
 import 'package:project1/posts_model.dart';
 
 class NewClass extends StatelessWidget {
   final String title;
   final String description;
   final String ImagePath;
-  final String price;
+  final double price;
   final String discountPercentage;
   final String rating;
   final String stock;
@@ -136,7 +137,7 @@ class NewClass extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            rating,
+                            "rating",
                             style: TextStyle(color: Colors.white),
                           ),
                           Icon(
@@ -167,7 +168,7 @@ class NewClass extends StatelessWidget {
                       color: Colors.green,
                     ),
                     Text(
-                      price,
+                      "  price.toString()",
                       style: TextStyle(color: Colors.green),
                     ),
                     Text(
@@ -226,7 +227,18 @@ class NewClass extends StatelessWidget {
                   height: 20,
                 ),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CartScreen(
+                                    cartProducts: [
+                                      Product(
+                                          title: title,
+                                          description: description)
+                                    ],
+                                  )));
+                    },
                     child: Row(
                       children: [
                         Icon(

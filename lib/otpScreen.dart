@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project1/loginpage.dart';
+import 'package:project1/productpage2.dart';
 import 'package:project1/page.dart';
 import 'package:project1/routes.dart';
 
@@ -64,24 +65,19 @@ class _otpScreenState extends State<otpScreen> {
           ElevatedButton(
               onPressed: () {
                 try {
-                  // PhoneAuthCredential cred = PhoneAuthProvider.credential(
-                  //     verificationId: widget.verificationId,
-                  //     smsCode: otpcontroller.text.toString());
-
-                  // FirebaseAuth.instance
-                  //     .signInWithCredential(cred)
-                  //     .then((value) => {
-                  //           Navigator.pushAndRemoveUntil(
-                  //             context,
-                  //             MaterialPageRoute(
-                  //                 builder: (context) => ProductPage()),
-                  //             (route) => false,
-                  //           )
-                  //           // Navigator.pushNamed(context, loginRoute)
-                  //         });
                   PhoneAuthCredential cred = PhoneAuthProvider.credential(
-                      verificationId: verificationId,
-                      smsCode: otpcontroller.text);
+                      verificationId: widget.verificationId,
+                      smsCode: otpcontroller.text.toString());
+
+                  FirebaseAuth.instance
+                      .signInWithCredential(cred)
+                      .then((value) => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const ProductPage2()))
+                            // Navigator.pushNamed(context, loginRoute)
+                          });
                 } catch (e) {
                   print('----------------eror from otp==========$e');
                 }

@@ -1,6 +1,6 @@
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:flutter/material.dart';
-import 'package:project1/mobiles.dart';
+import 'package:project1/productpage2.dart';
 import 'package:project1/page.dart';
 import 'package:project1/page2.dart';
 
